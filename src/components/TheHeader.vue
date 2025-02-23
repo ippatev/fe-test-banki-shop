@@ -10,14 +10,20 @@
       </ul>
       <div class="header__search-bar">
         <input type="text" value="" placeholder="Поиск по названию картины" class="header__search-input" />
-        <button class="header__search-button">Найти</button>
+        <TheButton>Найти</TheButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import TheButton from './TheButton.vue';
+
+export default {
+  components: {
+    TheButton
+  }
+}
 </script>
 
 <style scoped>
@@ -43,8 +49,7 @@ export default {}
   list-style-type: none;
 }
 
-.header__search-input,
-.header__search-button {
+.header__search-input {
   height: 48px;
   font-family: Merriweather, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -58,12 +63,5 @@ export default {}
 
 .header__search-input::placeholder {
   color: var(--gray)
-}
-
-.header__search-button {
-  padding: 14px 36px;
-  border: none;
-  color: var(--white);
-  background-color: var(--color-accent);
 }
 </style>
