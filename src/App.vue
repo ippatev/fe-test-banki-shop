@@ -32,6 +32,7 @@ export default {
   --white: #fff;
   --black: #343030;
   --gray: #E1E1E1;
+  --dark-gray: ##B5B5B5;
   --color-accent: #403432;
 }
 

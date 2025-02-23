@@ -51,17 +51,19 @@ export default {
 
 .header__search-input {
   height: 48px;
+  padding: 14px 16px;
+  border: 1px solid var(--gray);
   font-family: Merriweather, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header__search-input {
-  padding: 14px 16px;
-  border: 1px solid var(--gray)
-}
-
 .header__search-input::placeholder {
   color: var(--gray)
+}
+
+.header__search-input:focus-visible {
+  outline: none;
+  border-color: var(--dark-gray);
 }
 </style>
