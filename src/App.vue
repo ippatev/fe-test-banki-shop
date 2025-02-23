@@ -7,7 +7,10 @@
         <h1>Картины эпохи Возрождения</h1>
       </header>
 
-      <div>
+      <div class="sales-list">
+        <SalesCard></SalesCard>
+        <SalesCard></SalesCard>
+        <SalesCard></SalesCard>
         <SalesCard></SalesCard>
       </div>
     </main>
@@ -96,5 +99,12 @@ h6 {
 
 .main-content {
   margin-top: 45px;
+}
+
+.sales-list {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  margin-top: 40px;
 }
 </style>
