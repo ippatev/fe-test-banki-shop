@@ -2,9 +2,11 @@
   <div id="app">
     <TheHeader></TheHeader>
 
-    <div class="container">
-      <p>Hi!</p>
-    </div>
+    <main class="main-content container">
+      <header>
+        <h1>Картины эпохи Возрождения</h1>
+      </header>
+    </main>
   </div>
 </template>
 
@@ -83,5 +85,9 @@ h6 {
 .container {
   max-width: 1216px;
   margin: 0 auto;
+}
+
+.main-content {
+  margin-top: 45px;
 }
 </style>
