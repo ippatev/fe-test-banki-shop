@@ -14,18 +14,22 @@
         <SalesCard></SalesCard>
       </div>
     </main>
+
+    <TheFooter></TheFooter>
   </div>
 </template>
 
 <script>
 import SalesCard from './components/SalesCard.vue';
+import TheFooter from './components/TheFooter.vue';
 import TheHeader from './components/TheHeader.vue';
 
 export default {
   name: 'App',
   components: {
     TheHeader,
-    SalesCard
+    SalesCard,
+    TheFooter
   }
 }
 </script>
@@ -37,6 +41,7 @@ export default {
   --gray: #E1E1E1;
   --dark-gray: ##B5B5B5;
   --color-accent: #403432;
+  --color-footer: #ECEAEA;
 }
 
 body {
@@ -98,6 +103,7 @@ h6 {
 }
 
 .main-content {
+  min-height: 100vh;
   margin-top: 45px;
 }
 

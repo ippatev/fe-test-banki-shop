@@ -44,7 +44,4 @@ export default {
   display: flex;
   gap: 21px;
 }
-
-.sales-card__price {
-}
 </style>
