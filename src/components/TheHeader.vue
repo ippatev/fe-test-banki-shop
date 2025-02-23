@@ -50,6 +50,7 @@ export default {
 }
 
 .header__search-input {
+  width: 294px;
   height: 48px;
   padding: 14px 16px;
   border: 1px solid var(--gray);
