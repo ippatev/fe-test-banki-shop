@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <TheHeader></TheHeader>
+
+    <div class="container">
+      <p>Hi!</p>
+    </div>
   </div>
 </template>
 
@@ -17,7 +21,21 @@ export default {
 
 <style>
 :root {
+  --white: #fff;
   --black: #343030;
+  --gray: #E1E1E1;
+  --color-accent: #403432;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -60,5 +78,10 @@ h5 {
 
 h6 {
   font-weight: lighter;
+}
+
+.container {
+  max-width: 1216px;
+  margin: 0 auto;
 }
 </style>
