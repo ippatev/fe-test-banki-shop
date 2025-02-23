@@ -6,17 +6,23 @@
       <header>
         <h1>Картины эпохи Возрождения</h1>
       </header>
+
+      <div>
+        <SalesCard></SalesCard>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
+import SalesCard from './components/SalesCard.vue';
 import TheHeader from './components/TheHeader.vue';
 
 export default {
   name: 'App',
   components: {
-    TheHeader
+    TheHeader,
+    SalesCard
   }
 }
 </script>
