@@ -1,12 +1,12 @@
 <template>
   <div class="sales-card">
-    <img width="280" height="160" src="../assets/painting-1.png" alt="">
+    <img width="280" height="160" :src="img" :alt="title">
     <div class="sales-card__content">
-      <h2>«Рождение Венеры» Сандро Боттичелли</h2>
+      <h2>{{ title }}</h2>
       <div class="sales-card__action">
         <div class="sales-card__price">
-          <h6><s>6 000 000 $</s></h6>
-          <h3>1 000 000 $</h3>
+          <h6 v-if="price.old"><s>{{price.old}} $</s></h6>
+          <h3>{{price.current}} $</h3>
         </div>
         <TheButton>Купить</TheButton>
       </div>
@@ -20,6 +20,11 @@ import TheButton from './TheButton.vue';
 export default {
   components: {
     TheButton
+  },
+  props: {
+    title: String,
+    img: String,
+    price: Object
   }
 }
 </script>
@@ -43,5 +48,12 @@ export default {
 .sales-card__action {
   display: flex;
   gap: 21px;
+}
+
+.sales-card__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 </style>

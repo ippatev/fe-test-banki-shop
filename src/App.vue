@@ -8,10 +8,13 @@
       </header>
 
       <div class="sales-list">
-        <SalesCard></SalesCard>
-        <SalesCard></SalesCard>
-        <SalesCard></SalesCard>
-        <SalesCard></SalesCard>
+        <SalesCard
+          v-for="card in salesCards"
+          :key="card.id"
+          :title="card.title"
+          :img="card.img"
+          :price="card.price">
+        </SalesCard>
       </div>
     </main>
 
@@ -30,6 +33,44 @@ export default {
     TheHeader,
     SalesCard,
     TheFooter
+  },
+  data() {
+    return {
+      salesCards: []
+    }
+  },
+  created() {
+    const salesImgNames = ['painting-1.png', 'painting-2.png', 'painting-3.png']
+
+    this.salesCards = [
+      {
+        id: 0,
+        title: '«Рождение Венеры» Сандро Боттичелли',
+        img: require(`@/assets/${salesImgNames[0]}`),
+        price: {
+          current: 1_000_000,
+          old: 2_000_000
+        }
+      },
+      {
+        id: 1,
+        title: '«Тайная вечеря»  Леонардо да Винчи',
+        img: require(`@/assets/${salesImgNames[1]}`),
+        price: {
+          current: 3_000_000,
+          old: null
+        }
+      },
+      {
+        id: 2,
+        title: '«Сотворение Адама» Микеланджело',
+        img: require(`@/assets/${salesImgNames[2]}`),
+        price: {
+          current: 5_000_000,
+          old: null
+        }
+      }
+    ]
   }
 }
 </script>
