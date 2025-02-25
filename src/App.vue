@@ -97,6 +97,9 @@ export default {
   --dark-gray: ##B5B5B5;
   --color-accent: #403432;
   --color-footer: #ECEAEA;
+  --color-button-hover: #776763;
+  --color-button-disabled: #C1B4B1;
+  --color-button-in-the-cart: #5B3A32;
 }
 
 body {
