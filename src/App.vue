@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheHeader></TheHeader>
+    <TheHeader v-model="searchQuery"></TheHeader>
 
     <main class="main-content container">
       <header>
@@ -9,7 +9,7 @@
 
       <div class="sales-list">
         <SalesCard
-          v-for="card in salesCards"
+          v-for="card in filteredSalesCard"
           :key="card.id"
           :title="card.title"
           :img="card.img"
@@ -36,7 +36,8 @@ export default {
   },
   data() {
     return {
-      salesCards: []
+      salesCards: [],
+      searchQuery: ''
     }
   },
   created() {
@@ -71,6 +72,13 @@ export default {
         }
       }
     ]
+  },
+  computed: {
+    filteredSalesCard: function() {
+      return this.salesCards.filter((card) => {
+        return card.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+      })
+    }
   }
 }
 </script>

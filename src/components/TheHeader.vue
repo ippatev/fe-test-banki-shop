@@ -9,7 +9,7 @@
         <li>О компании</li>
       </ul>
       <div class="header__search-bar">
-        <input type="text" value="" placeholder="Поиск по названию картины" class="header__search-input" />
+        <input type="text" :value="value" @input="updateValue()" placeholder="Поиск по названию картины" class="header__search-input" />
         <TheButton>Найти</TheButton>
       </div>
     </div>
@@ -20,8 +20,19 @@
 import TheButton from './TheButton.vue';
 
 export default {
+  props: {
+    value: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     TheButton
+  },
+  methods: {
+    updateValue() {
+      this.$emit('input', event.target.value)
+    }
   }
 }
 </script>
