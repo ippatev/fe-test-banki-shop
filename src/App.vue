@@ -41,7 +41,7 @@ export default {
     }
   },
   created() {
-    const salesImgNames = ['painting-1.png', 'painting-2.png', 'painting-3.png']
+    const salesImgNames = ['painting-1.png', 'painting-2.png', 'painting-3.png', 'painting-4.png']
 
     this.salesCards = [
       {
@@ -70,6 +70,12 @@ export default {
           current: 5_000_000,
           old: null
         }
+      },
+      {
+        id: 3,
+        title: '«Урок анатомии»  Рембрандт',
+        img: require(`@/assets/${salesImgNames[3]}`),
+        price: null
       }
     ]
   },
