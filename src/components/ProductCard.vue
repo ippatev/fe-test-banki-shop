@@ -1,15 +1,17 @@
 <template>
-  <div class="sales-card" :style="{opacity: !price ? '.5' : '1'}">
-    <img width="280" height="160" :src="img" :alt="title">
+  <div class="sales-card" :style="{ opacity: !price ? '.5' : '1' }">
+    <img width="280" height="160" :src="img" :alt="title" />
     <div class="sales-card__content">
       <h2>{{ title }}</h2>
       <div class="sales-card__action">
         <template v-if="price">
           <div class="sales-card__price">
-            <h6 v-if="price.old"><s>{{price.old}} $</s></h6>
-            <h3>{{price.current}} $</h3>
+            <h6 v-if="price.old">
+              <s>{{ price.old }} $</s>
+            </h6>
+            <h3>{{ price.current }} $</h3>
           </div>
-          <TheButton>Купить</TheButton>
+          <TheButton :in-the-cart="id === 2">Купить</TheButton>
         </template>
         <template v-else>
           <h3 class="sales-card__price_soldout">Продана на аукционе</h3>
@@ -20,21 +22,22 @@
 </template>
 
 <script>
-import TheButton from './TheButton.vue';
+import TheButton from "./TheButton.vue";
 
 export default {
   components: {
-    TheButton
+    TheButton,
   },
   props: {
+    id: Number,
     title: String,
     img: String,
     price: {
       type: [Object, null],
-      required: false
-    }
-  }
-}
+      required: false,
+    },
+  },
+};
 </script>
 
 <style scoped>
