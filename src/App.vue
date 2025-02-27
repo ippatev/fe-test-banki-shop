@@ -7,15 +7,26 @@
         <h1>Картины эпохи Возрождения</h1>
       </header>
 
-      <div class="sales-list">
-        <SalesCard
-          v-for="card in filteredSalesCard"
+      <div class="product-list">
+        <ProductCard
+          v-for="card in filteredProductCards"
           :key="card.id"
+          :id="card.id"
           :title="card.title"
           :img="card.img"
-          :price="card.price">
-        </SalesCard>
+          :price="card.price"
+        >
+        </ProductCard>
       </div>
+
+      <ProductModal
+        :id="0"
+        title="Product Title"
+        description="Product Description"
+        img="https://example.com/image.jpg"
+        :price="{ current: 1_000_000, old: null }"
+        @close="() => {}"
+      ></ProductModal>
     </main>
 
     <TheFooter></TheFooter>
@@ -23,83 +34,92 @@
 </template>
 
 <script>
-import SalesCard from './components/SalesCard.vue';
-import TheFooter from './components/TheFooter.vue';
-import TheHeader from './components/TheHeader.vue';
+import ProductCard from "./components/ProductCard.vue";
+import ProductModal from "./components/ProductModal.vue";
+import TheFooter from "./components/TheFooter.vue";
+import TheHeader from "./components/TheHeader.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TheHeader,
-    SalesCard,
-    TheFooter
+    TheFooter,
+    ProductCard,
+    ProductModal,
   },
   data() {
     return {
-      salesCards: [],
-      searchQuery: ''
-    }
+      productCards: [],
+      searchQuery: "",
+    };
   },
   created() {
-    const salesImgNames = ['painting-1.png', 'painting-2.png', 'painting-3.png', 'painting-4.png']
+    const productImgNames = [
+      "painting-1.png",
+      "painting-2.png",
+      "painting-3.png",
+      "painting-4.png",
+    ];
 
-    this.salesCards = [
+    this.productCards = [
       {
         id: 0,
-        title: '«Рождение Венеры» Сандро Боттичелли',
-        img: require(`@/assets/${salesImgNames[0]}`),
+        title: "«Рождение Венеры» Сандро Боттичелли",
+        img: require(`@/assets/${productImgNames[0]}`),
         price: {
           current: 1_000_000,
-          old: 2_000_000
-        }
+          old: 2_000_000,
+        },
       },
       {
         id: 1,
-        title: '«Тайная вечеря»  Леонардо да Винчи',
-        img: require(`@/assets/${salesImgNames[1]}`),
+        title: "«Тайная вечеря»  Леонардо да Винчи",
+        img: require(`@/assets/${productImgNames[1]}`),
         price: {
           current: 3_000_000,
-          old: null
-        }
+          old: null,
+        },
       },
       {
         id: 2,
-        title: '«Сотворение Адама» Микеланджело',
-        img: require(`@/assets/${salesImgNames[2]}`),
+        title: "«Сотворение Адама» Микеланджело",
+        img: require(`@/assets/${productImgNames[2]}`),
         price: {
           current: 5_000_000,
-          old: null
-        }
+          old: 6_000_000,
+        },
       },
       {
         id: 3,
-        title: '«Урок анатомии»  Рембрандт',
-        img: require(`@/assets/${salesImgNames[3]}`),
-        price: null
-      }
-    ]
+        title: "«Урок анатомии»  Рембрандт",
+        img: require(`@/assets/${productImgNames[3]}`),
+        price: null,
+      },
+    ];
   },
   computed: {
-    filteredSalesCard: function() {
-      return this.salesCards.filter((card) => {
-        return card.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-      })
-    }
-  }
-}
+    filteredProductCards: function () {
+      return this.productCards.filter((card) => {
+        return card.title
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+    },
+  },
+};
 </script>
 
 <style>
 :root {
   --white: #fff;
   --black: #343030;
-  --gray: #E1E1E1;
-  --dark-gray: ##B5B5B5;
+  --gray: #e1e1e1;
+  --dark-gray: ##b5b5b5;
   --color-accent: #403432;
-  --color-footer: #ECEAEA;
+  --color-footer: #eceaea;
   --color-button-hover: #776763;
-  --color-button-disabled: #C1B4B1;
-  --color-button-in-the-cart: #5B3A32;
+  --color-button-disabled: #c1b4b1;
+  --color-button-in-the-cart: #5b3a32;
 }
 
 body {
@@ -140,7 +160,6 @@ h4,
 h5,
 h6 {
   font-size: 14px;
-
 }
 
 h4 {
@@ -165,7 +184,7 @@ h6 {
   margin-top: 45px;
 }
 
-.sales-list {
+.product-list {
   display: flex;
   flex-direction: row;
   gap: 32px;
