@@ -1,19 +1,38 @@
 <template>
-  <button class="button">
-    <slot></slot>
+  <button
+    class="button button-accent"
+    :class="{ 'button-secondary': inTheCart }"
+  >
+    <template v-if="inTheCart">
+      <IconDone></IconDone>
+      В корзине
+    </template>
+    <template v-else>
+      <slot></slot>
+    </template>
   </button>
 </template>
 
 <script>
+import IconDone from "./icons/IconDone.vue";
+
 export default {
+  components: {
+    IconDone,
+  },
   props: {
     inTheCart: {
       type: Boolean,
       required: false,
-      default: false
-    }
-  }
-}
+      default: false,
+    },
+  },
+  data() {
+    return {
+      progressStatus: null,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -25,8 +44,19 @@ export default {
   padding: 14px 36px;
   border: none;
   color: var(--white);
-  background-color: var(--color-accent);
   cursor: pointer;
+}
+
+.button-accent {
+  background-color: var(--color-accent);
+}
+
+.button-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-button-in-the-cart);
+  padding: 14px 8px;
 }
 
 .button:hover {
@@ -35,9 +65,5 @@ export default {
 
 .button:disabled {
   background-color: var(--color-button-disabled);
-}
-
-.button_in-the-cart {
-  background-color: var(--color-button-in-the-cart);
 }
 </style>
