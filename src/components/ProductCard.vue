@@ -50,8 +50,9 @@ export default {
       return stateLabels[this.buttonState] || null;
     },
   },
-  created() {
-    this.buttonState = this.id === 2 ? 1 : 0;
+  mounted() {
+    const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+    this.buttonState = cart[this.id] ? 2 : 0;
   },
   methods: {
     buttonClickHandler() {
@@ -59,7 +60,13 @@ export default {
 
       setTimeout(() => {
         this.buttonState = 2;
+        this.saveToLocalStorage();
       }, 2000);
+    },
+    saveToLocalStorage() {
+      const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+      cart[this.id] = this.buttonState === 2;
+      localStorage.setItem("cart", JSON.stringify(cart));
     },
   },
 };
