@@ -20,6 +20,7 @@
       </div>
 
       <ProductModal
+        v-if="0"
         :id="0"
         title="Product Title"
         description="Product Description"
