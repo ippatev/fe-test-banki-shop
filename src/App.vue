@@ -7,7 +7,7 @@
         <h1>Картины эпохи Возрождения</h1>
       </header>
 
-      <div class="product-list">
+      <div class="product-grid">
         <ProductCard
           v-for="card in filteredProductCards"
           :key="card.id"
@@ -196,10 +196,36 @@ h6 {
   margin-top: 45px;
 }
 
-.product-list {
-  display: flex;
-  flex-direction: row;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 20px;
   gap: 32px;
-  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .product-grid {
+    gap: 10px;
+  }
 }
 </style>
