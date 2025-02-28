@@ -1,11 +1,15 @@
 <template>
-  <div class="sales-card" :style="{ opacity: !price ? '.5' : '1' }">
+  <div
+    class="product-card"
+    :style="{ opacity: !price ? '.5' : '1' }"
+    @click="$emit('click', id)"
+  >
     <img width="280" height="160" :src="img" :alt="title" />
-    <div class="sales-card__content">
+    <div class="product-card__content">
       <h2>{{ title }}</h2>
-      <div class="sales-card__action">
+      <div class="product-card__action">
         <template v-if="price">
-          <div class="sales-card__price">
+          <div class="product-card__price">
             <h6 v-if="price.old">
               <s>{{ price.old }} $</s>
             </h6>
@@ -16,7 +20,7 @@
           }}</TheButton>
         </template>
         <template v-else>
-          <h3 class="sales-card__price_soldout">Продана на аукционе</h3>
+          <h3 class="product-card__price_soldout">Продана на аукционе</h3>
         </template>
       </div>
     </div>
@@ -30,6 +34,7 @@ export default {
   components: {
     TheButton,
   },
+  emits: ["click"],
   props: {
     id: Number,
     title: String,
@@ -73,35 +78,40 @@ export default {
 </script>
 
 <style scoped>
-.sales-card {
+.product-card {
   display: flex;
   width: 280px;
   height: 328px;
   flex-direction: column;
   border: 1px solid var(--gray);
+  cursor: pointer;
 }
 
-.sales-card__content {
+.product-card:hover {
+  border-color: var(--color-accent);
+}
+
+.product-card__content {
   display: flex;
   flex-direction: column;
   gap: 22px;
   padding: 24px 20px;
 }
 
-.sales-card__action {
+.product-card__action {
   display: flex;
   justify-content: space-between;
   gap: 21px;
 }
 
-.sales-card__price {
+.product-card__price {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
 
-.sales-card__price_soldout {
+.product-card__price_soldout {
   margin-top: 12px;
 }
 </style>

@@ -54,6 +54,9 @@ export default {
       return this.images[this.currentSlide];
     },
   },
+  created() {
+    this.currentSlide = this.id;
+  },
   methods: {
     nextSlide() {
       this.currentSlide = (this.currentSlide + 1) % this.images.length;

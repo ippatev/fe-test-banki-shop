@@ -15,18 +15,23 @@
           :title="card.title"
           :img="card.img"
           :price="card.price"
+          @click="(id) => (selectedProductId = id)"
         >
         </ProductCard>
       </div>
 
       <ProductModal
-        v-if="0"
-        :id="0"
-        title="Product Title"
-        description="Product Description"
-        img="https://example.com/image.jpg"
-        :price="{ current: 1_000_000, old: null }"
-        @close="() => {}"
+        v-if="selectedProductId || selectedProductId === 0"
+        :id="selectedProduct.id"
+        :title="selectedProduct.title"
+        :description="selectedProduct.description"
+        :img="selectedProduct.img"
+        :price="selectedProduct.price"
+        @close="
+          () => {
+            selectedProductId = null;
+          }
+        "
       ></ProductModal>
     </main>
 
@@ -52,7 +57,22 @@ export default {
     return {
       productCards: [],
       searchQuery: "",
+      selectedProductId: null,
     };
+  },
+  computed: {
+    selectedProduct() {
+      return this.productCards.find(
+        (card) => card.id === this.selectedProductId
+      );
+    },
+    filteredProductCards: function () {
+      return this.productCards.filter((card) => {
+        return card.title
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+    },
   },
   created() {
     const productImgNames = [
@@ -97,15 +117,6 @@ export default {
         price: null,
       },
     ];
-  },
-  computed: {
-    filteredProductCards: function () {
-      return this.productCards.filter((card) => {
-        return card.title
-          .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
-      });
-    },
   },
 };
 </script>
