@@ -11,7 +11,9 @@
             </h6>
             <h3>{{ price.current }} $</h3>
           </div>
-          <TheButton :in-the-cart="id === 2">Купить</TheButton>
+          <TheButton @click="buttonClickHandler" :buttonState="buttonState">{{
+            buttonStateLabel
+          }}</TheButton>
         </template>
         <template v-else>
           <h3 class="sales-card__price_soldout">Продана на аукционе</h3>
@@ -37,6 +39,29 @@ export default {
       required: false,
     },
   },
+  data() {
+    return {
+      buttonState: 0,
+    };
+  },
+  computed: {
+    buttonStateLabel() {
+      const stateLabels = ["Купить", "Обрабатывается", "В корзине"];
+      return stateLabels[this.buttonState] || null;
+    },
+  },
+  created() {
+    this.buttonState = this.id === 2 ? 1 : 0;
+  },
+  methods: {
+    buttonClickHandler() {
+      this.buttonState = 1;
+
+      setTimeout(() => {
+        this.buttonState = 2;
+      }, 2000);
+    },
+  },
 };
 </script>
 
@@ -58,6 +83,7 @@ export default {
 
 .sales-card__action {
   display: flex;
+  justify-content: space-between;
   gap: 21px;
 }
 
