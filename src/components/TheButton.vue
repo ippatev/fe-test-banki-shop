@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="$emit('click')"
+    @click.stop="$emit('click')"
     class="button"
     :class="{
       'button-in-progress': buttonState === 1,
