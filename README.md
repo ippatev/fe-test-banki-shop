@@ -1,4 +1,5 @@
 # fe-test-banki-shop
+Preview Link: https://hilarious-frangollo-b6b9ff.netlify.app/
 
 ## Project setup
 ```
